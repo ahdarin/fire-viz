@@ -1,7 +1,7 @@
 // assets/js/utils.js
 
 // Konstanta API Backend Anda (FastAPI)
-const API_BASE_URL = 'http://localhost:8000/api';
+const API_BASE_URL = 'https://ahdarin-fire-viz.hf.space/api';
 
 // Palet warna untuk kategori FRP (Fire Radiative Power)
 const FRP_COLORS = {
