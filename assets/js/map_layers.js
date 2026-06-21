@@ -88,10 +88,29 @@ function renderHotspots(geojsonData) {
                 opacity: 1,
                 fillOpacity: 0.8
             }).bindPopup(`
-                <strong>Tanggal:</strong> ${feature.properties.datetime}<br>
-                <strong>FRP:</strong> ${feature.properties.frp}<br>
-                <strong>Confidence:</strong> ${feature.properties.confidence_label}
-            `);
+                <div class="leaflet-popup-card">
+                    <div class="popup-title">Detail Hotspot</div>
+
+                    <div class="popup-item">
+                        <span class="popup-label">Tanggal</span>
+                        <span class="popup-data">${feature.properties.datetime}</span>
+                    </div>
+
+                    <div class="popup-item">
+                        <span class="popup-label">FRP</span>
+                        <span class="popup-data">${feature.properties.frp}</span>
+                    </div>
+
+                    <div class="popup-item">
+                        <span class="popup-label">Confidence</span>
+                        <span class="popup-data">${feature.properties.confidence_label}</span>
+                    </div>
+                </div>
+            `, {
+                minWidth: 240,
+                maxWidth: 300,
+                className: 'custom-popup'
+            });
         }
     });
 

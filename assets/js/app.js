@@ -184,7 +184,19 @@ const appState = {
                 // Format angka agar menjadi 1 desimal jika berupa float
                 const displayScore = typeof score === 'number' ? score.toFixed(1) : score;
 
-                layer.bindPopup(`<b>${areaName}</b><br>Total Ramalan Titik Api (2026): <b>${displayScore}</b>`);
+                layer.bindPopup(`
+                    <div class="leaflet-popup-card">
+                        <div class="popup-title">${areaName}</div>
+                        <div class="popup-row">
+                            <span>Total Ramalan Titik Api (2026)</span>
+                        </div>
+                        <div class="popup-value">${displayScore}</div>
+                    </div>
+                `, {
+                    minWidth: 220,
+                    maxWidth: 280,
+                    className: 'custom-popup'
+                });
             }
         });
         
