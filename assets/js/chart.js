@@ -8,38 +8,84 @@ function initChart() {
     forecastChartInstance = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: [], // Akan diisi bulan/tahun
+            labels: [],
             datasets: [
                 {
-                    label: 'Historis (2019-2025)',
+                    label: 'Historis',
                     data: [],
-                    borderColor: '#333',
-                    backgroundColor: 'rgba(51, 51, 51, 0.1)',
+                    borderColor: '#475569',
                     borderWidth: 2,
-                    fill: true,
-                    tension: 0.2
+                    pointRadius: 1,
+                    pointHoverRadius: 5,
+                    fill: false,
+                    tension: 0.3
                 },
                 {
-                    label: 'Prediksi SARIMA (2026)',
+                    label: 'Prediksi (2026)',
                     data: [],
-                    borderColor: '#d32f2f', // Merah
-                    borderDash: [5, 5], // Garis putus-putus
+                    borderColor: '#ba1a1a',
                     borderWidth: 2,
-                    backgroundColor: 'rgba(211, 47, 47, 0.2)',
-                    fill: true,
-                    tension: 0.2
+                    borderDash: [5, 5],
+                    pointRadius: 1,
+                    pointHoverRadius: 5,
+                    fill: false,
+                    tension: 0.3
                 }
             ]
         },
         options: {
             responsive: true,
             maintainAspectRatio: false,
+            
+            interaction: {
+                mode: 'index',
+                intersect: false, 
+            },
+            
             plugins: {
-                legend: { position: 'bottom' }
+                legend: {
+                    display: true,
+                    position: 'bottom',
+                    labels: {
+                        boxWidth: 12,
+                        font: { size: 10 }
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(255, 255, 255, 0.9)',
+                    titleColor: '#0b1c30',
+                    bodyColor: '#434751',
+                    borderColor: '#c3c6d3',
+                    borderWidth: 1,
+                    padding: 10,
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.dataset.label || '';
+                            if (label) {
+                                label += ': ';
+                            }
+                            if (context.parsed.y !== null) {
+                                // Membulatkan angka desimal prediksi agar lebih enak dibaca
+                                label += context.parsed.y.toFixed(1); 
+                            }
+                            return label;
+                        }
+                    }
+                }
             },
             scales: {
-                y: { beginAtZero: true, title: { display: true, text: 'Jumlah Titik Api' } },
-                x: { title: { display: true, text: 'Waktu' } }
+                x: {
+                    ticks: {
+                        maxTicksLimit: 6,
+                        font: { size: 10 }
+                    },
+                    grid: { display: false }
+                },
+                y: {
+                    beginAtZero: true,
+                    ticks: { font: { size: 10 } },
+                    grid: { color: '#e5eeff' }
+                }
             }
         }
     });

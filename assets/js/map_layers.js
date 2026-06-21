@@ -98,7 +98,7 @@ function renderHotspots(geojsonData) {
 
                     <div class="popup-item">
                         <span class="popup-label">FRP</span>
-                        <span class="popup-data">${feature.properties.frp}</span>
+                        <span class="popup-data">${feature.properties.frp_category}</span>
                     </div>
 
                     <div class="popup-item">

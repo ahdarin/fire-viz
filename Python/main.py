@@ -50,7 +50,7 @@ def get_hotspots(
         # Pengecekan dilakukan di kolom ADM1_EN (Provinsi) atau ADM2_EN (Kabupaten)
         mask = mask & ((DF["ADM1_EN"] == region) | (DF["ADM2_EN"] == region))
         
-    sub = DF.loc[mask, ["latitude", "longitude", "frp", "datetime", "confidence_label"]]
+    sub = DF.loc[mask, ["latitude", "longitude", "frp", "datetime", "confidence_label", "frp_category"]]
 
     # Kirim ramping; format datetime jadi string agar JSON bersih
     sub = sub.copy()
